@@ -6,11 +6,14 @@ const _PATH_TO_SRC = joinpath(_ROOT, "src");
 # did this file get called?
 const _DID_INCLUDE_FILE_GET_CALLED = true;
 
-# if we are missing any packages, install them -
+# activate the project environment -
 using Pkg;
+Pkg.activate(".");
+
+# if we are missing any packages, install them -
 if (isfile(joinpath(_ROOT, "Manifest.toml")) == false) # have manifest file, we are good. Otherwise, we need to instantiate the environment
     Pkg.add(path="https://github.com/varnerlab/VLDataScienceMachineLearningPackage.jl.git")
-    Pkg.activate("."); Pkg.resolve(); Pkg.instantiate(); Pkg.update();
+    Pkg.resolve(); Pkg.instantiate(); Pkg.update();
 end
 
 # load external packages -
